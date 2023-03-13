@@ -48,6 +48,7 @@ public class PrimeFactor {
         Scanner scn = new Scanner(System.in);
         // long n = scn.nextLong();
         String input = scn.nextLine();
+        // This should probably be in a try actch block and a loop (similar to in the C version) but it's not. Too bad!
         long n = Long.parseLong(input);
         System.out.println("\nThe prime factors of " + n + " are:\n");
         printPrimeFactors(n, 2);
