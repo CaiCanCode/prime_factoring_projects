@@ -7,8 +7,8 @@
 
 #include <stdio.h>
 #include <math.h>
-
-long long MAX_VALUE = 9223372036854775807;
+#include <string.h>
+#include <limits.h>
 
 int is_prime(long long n){
     if (n == 2){
@@ -43,14 +43,52 @@ void prime_factor (long long start, long long end){
     }
 }
 
+int str_ll(char* str, int n, long long* dest){
+    //printf("begin str -> ll\n"); //for debugging
+    *dest = 0;
+    int i = 0;
+    int negative = 1;
+    if(*str == '-'){
+        negative = -1;
+        i++;
+    }else if (n == 20){
+        return -1;
+    }
+    while(i < n){
+        //printf("main loop str -> ll\n"); //for debugging
+        char ch = str[i];
+        if(ch < '0' || ch > '9'){
+            return -1;
+        }
+        long long decimal = (ch - '0');
+        for(int j = 1; j < n-i; ){
+            decimal *= 10;
+        }
+        *dest += decimal;
+        i++;
+    }
+    if(*dest == LLONG_MIN && negative == -1){
+        return 1;
+    }
+    if(*dest < 0){
+        return -1;
+    }
+    *dest *= negative;
+}
+
 int main(){
     
     long long i;
     int is_valid;
     do{
         printf("Enter an integer:\n");
-        //should probably be read as a string to avoid accidental wrapping but I'm too lazy
-        is_valid = scanf("%lld", &i); 
+        char buffer[25];
+        fgets(buffer, 24, stdin); 
+        if(strlen(buffer) > 21){ //remember to include space for '-' and '\n'
+            is_valid = -1;
+        }else{
+            is_valid = str_ll(buffer, strlen(buffer) - 1, &i);
+        }
         if(is_valid <= 0){
             printf("Sorry, couldn't read that number. Please try again.\n");
         }
@@ -59,6 +97,8 @@ int main(){
     printf("The prime factors of %lld are:\n", i);
     
     prime_factor(2, i);
+
+    printf("\nFun fact: the biggest prime this program can store is 9 223 372 036 854 775 783\n");
     
     return 0;
 }
