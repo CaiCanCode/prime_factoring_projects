@@ -87,9 +87,15 @@ int main(){
     do{
         printf("Enter an integer:\n");
         char buffer[25];
+        char ch = 'c';
         fgets(buffer, 24, stdin); 
         if(strlen(buffer) > 21){ //remember to include space for '-' and '\n'
             is_valid = -1;
+            if(strlen(buffer) == 23 && buffer[22] != '\n'){ //clear input buffer
+                while(ch != '\n'){
+                    ch = getchar();
+                }
+            }
         }else{
             is_valid = str_ll(buffer, strlen(buffer) - 1, &i);
         }
