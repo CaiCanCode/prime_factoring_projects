@@ -19,7 +19,13 @@ def printPrimeFactors (start: int, n: int):
             printPrimeFactors(int(i), int(n/i))
             return
 
-n = int(input("Enter an integer: "))
+while True:
+    try:
+        n = int(input("Enter an integer: "))
+        break
+    except:
+        print("Sorry, that value could not be read. Please try again.")
+
 
 print("The prime factors of ", n, " are:")
 printPrimeFactors(2, n)
