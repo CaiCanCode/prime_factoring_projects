@@ -44,12 +44,18 @@ public class PrimeFactor {
     
     public static void main(String[] args) {
 
-        System.out.println("\nEnter an integer:");
         Scanner scn = new Scanner(System.in);
-        // long n = scn.nextLong();
-        String input = scn.nextLine();
-        // This should probably be in a try-catch block and a loop (similar to in the C version) but it's not. Too bad!
-        long n = Long.parseLong(input);
+        long n;
+        while(true){
+            System.out.println("\nEnter an integer:");
+            try{
+                String input = scn.nextLine();
+                n = Long.parseLong(input);
+                break;
+            }catch(Exception e){
+                System.out.println("Sorry, value could not be read. Please try again.");
+            }
+        }
         System.out.println("\nThe prime factors of " + n + " are:\n");
         printPrimeFactors(n, 2);
         scn.close();
