@@ -6,20 +6,20 @@ def isPrime(n: int) -> bool:
             return False
     return True
 
-def printPrimeFactors (start: int, end: int):
-    if end < 0:
+def printPrimeFactors (start: int, n: int):
+    if n < 0:
         print(-1)
-        end *= -1
-    if isPrime(end):
-        print(end)
-        return
-    for i in (start, end + 1):
-        if end % i == 0 and isPrime(i):
+        n *= -1
+    if isPrime(n):
+        print(n)
+        return 
+    for i in range(start, n + 1):
+        if n % i == 0 and isPrime(i):
             print(i)
-            printPrimeFactors(i, end/i)
+            printPrimeFactors(int(i), int(n/i))
             return
 
-s = input("Enter an integer: ")
-n = int(s)
-print("The prime factors of " + s + " are:")
+n = int(input("Enter an integer: "))
+
+print("The prime factors of ", n, " are:")
 printPrimeFactors(2, n)
