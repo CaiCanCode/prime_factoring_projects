@@ -45,35 +45,39 @@ void prime_factor (long long start, long long end){
 
 int str_ll(char* str, int n, long long* dest){
     //printf("begin str -> ll\n"); //for debugging
+    //printf("%s", str); //for debugging
     *dest = 0;
     int i = 0;
     int negative = 1;
     if(*str == '-'){
+        //printf("str is negative\n"); //for debugging
         negative = -1;
         i++;
     }else if (n == 20){
         return -1;
     }
     while(i < n){
-        //printf("main loop str -> ll\n"); //for debugging
         char ch = str[i];
+        //printf("%c\n", ch); //for debugging
         if(ch < '0' || ch > '9'){
             return -1;
         }
         long long decimal = (ch - '0');
-        for(int j = 1; j < n-i; ){
+        for(int j = 1; j < n-i; j++){
             decimal *= 10;
         }
         *dest += decimal;
+        //printf("%lld\n", *dest); //for debugging
         i++;
     }
-    if(*dest == LLONG_MIN && negative == -1){
+    if(*dest == LLONG_MIN && negative == -1){ //wrapped on purpose
         return 1;
     }
-    if(*dest < 0){
+    if(*dest < 0){ //wrapped by accident
         return -1;
     }
     *dest *= negative;
+    return 1;
 }
 
 int main(){
