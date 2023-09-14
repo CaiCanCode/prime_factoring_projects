@@ -53,7 +53,7 @@ int main() {
         while(1){
             try{
                 std::cout << "Enter an integer: ";
-                std::cin >> str;
+                std::getline(std::cin, str);
                 if(str.find('.') < str.npos){ //make sure str actually an integer
                     throw 1;
                 }
@@ -69,7 +69,7 @@ int main() {
         prime_factor(2, n);
         
         std::cout << "Enter x to exit; enter anything else to re-run the program: ";
-        std::cin >> str;
+        std::getline(std::cin, str);
             
         if(!str.find('x')){ //if x is the first character in str
             break;
