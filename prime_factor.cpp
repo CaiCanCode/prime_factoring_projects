@@ -54,8 +54,10 @@ int main() {
             try{
                 std::cout << "Enter an integer: ";
                 std::getline(std::cin, str);
-                if(str.find('.') < str.npos){ //make sure str actually an integer
-                    throw 1;
+                for(unsigned int i = 1; i < str.length(); i++){ //make sure all characters (except the first) are digits
+                    if (str.at(i) < '0' || str.at(i) > '9'){
+                        throw 1;
+                    }
                 }
                 n = std::stoll(str); //should check for everything else
                 break;
@@ -80,3 +82,5 @@ int main() {
     return 0;
 
 }
+
+//compile with g++ -Wall -std=c++20 -o prime_factor prime_factor.cpp
