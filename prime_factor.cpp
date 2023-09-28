@@ -56,12 +56,12 @@ int main() {
                 std::getline(std::cin, str);
                 for(unsigned int i = 1; i < str.length(); i++){ //make sure all characters (except the first) are digits
                     if (str.at(i) < '0' || str.at(i) > '9'){
-                        throw 1;
+                        throw std::invalid_argument {"that's not an int, idiot."};
                     }
                 }
                 n = std::stoll(str); //should check for everything else
                 break;
-            } catch (...) {
+            } catch (std::invalid_argument& e) {
                 std::cout << "Sorry, invalid input, please try again" << std::endl;
             }
         }
