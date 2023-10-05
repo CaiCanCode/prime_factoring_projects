@@ -63,6 +63,8 @@ int main() {
                 break;
             } catch (std::invalid_argument& e) {
                 std::cout << "Sorry, invalid input, please try again" << std::endl;
+            } catch (std::out_of_range& e) {
+                std::cout << "Sorry, that number is out of range" << std::endl;
             }
         }
     
